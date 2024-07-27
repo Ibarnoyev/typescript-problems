@@ -2,6 +2,10 @@
 	type ReduceCallback<T, U> = (accumulator: U, currentValue: T, index: number, array: T[]) => U;
 
 	//  your code here
+
+  function myReducer<T, U>(array: T[], callback: ReduceCallback<T, number>): U
+  function myReducer<T, U>(array: T[], callback: ReduceCallback<T, string>, initialValue?: U): U
+
 	function myReducer<T, U>(array: T[], callback: ReduceCallback<T, U>, initialValue?: U): U {
 		let accumulator: U;
 

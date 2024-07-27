@@ -1,6 +1,16 @@
 import { Equal, Expect } from '../helpers/type-utils';
 
-type Generic<T> = unknown;
+type UniversalType = {
+  id?: number; 
+  name?: string; 
+  address?: { 
+    city?: string; 
+    country?: string 
+  };
+  contact?: Generic<{ email: string; phone?: string }>
+}
+
+type Generic<T> = T extends Omit<User, 'name'> ? Omit<UniversalType, "name"> : Omit<UniversalType, "contact">
 
 interface User {
 	id: number;
@@ -29,7 +39,14 @@ type tests = [
 	Expect<
 		Equal<
 			typeof user1,
-			{ id?: number; name?: string; address?: { city?: string; country?: string } }
+			{ 
+				id?: number; 
+				name?: string; 
+				address?: { 
+					city?: string; 
+					country?: string 
+				} 
+			}
 		>
 	>,
 	Expect<

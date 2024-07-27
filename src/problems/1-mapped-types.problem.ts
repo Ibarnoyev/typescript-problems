@@ -1,6 +1,12 @@
 import { Equal, Expect } from '../helpers/type-utils';
 
-type Generic<T> = unknown;
+type NewUser = {
+  id?: number | null | undefined;
+	name?: string | null | undefined;
+	email?: string | null | undefined;
+}
+
+type Generic<T> = T extends User ? NewUser : Omit<NewUser, "email">;
 
 interface User {
 	id: number;
@@ -14,8 +20,8 @@ const user1: Generic<User> = {
 };
 
 const user2: Generic<Pick<User, 'id' | 'name'>> = {
-	id: null,
-	name: 'John Doe',
+	id: 1,
+  name: 'hello world'
 };
 
 type tests = [
