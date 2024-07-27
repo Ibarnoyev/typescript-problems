@@ -5,7 +5,6 @@
 
   function myReducer<T, U>(array: T[], callback: ReduceCallback<T, number>): U
   function myReducer<T, U>(array: T[], callback: ReduceCallback<T, string>, initialValue?: U): U
-
 	function myReducer<T, U>(array: T[], callback: ReduceCallback<T, U>, initialValue?: U): U {
 		let accumulator: U;
 
